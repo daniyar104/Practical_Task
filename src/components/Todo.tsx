@@ -1,9 +1,10 @@
 "use client"
 import {useState} from "react";
-import styles from "./todo.module.css";
+import styles from "./todo.module.css"; // ✅ Правильно
+
 
 interface ITodo {
-    id: string;
+    id: number;
     name: string;
     completed: boolean;
 }
@@ -11,16 +12,27 @@ interface ITodo {
 const Todo: React.FC = () => {
     const [todos, setTodo] = useState<ITodo[]>([])
     const [newTask, setNewTask] = useState<string>("")
-    const showTodo = () => {
-        console.log(newTask)
-        setNewTask(" ")
+
+    //Add new task
+    const addTask = () => {
+        if (newTask.trim() === "") return
+
+        const newTodo: ITodo = {
+            id: Date.now(),
+            name: newTask,
+            completed: false
+        }
+
+        setTodo([...todos, newTodo])
+        setNewTask("")
     }
+
     return(
         <div>
             <h1>Список задач</h1>
             <div>
-                <input type="text" value={newTask} onChange={event => setNewTask(event.target.value)}/>
-                <button onClick={showTodo}>Add</button>
+                <input className={styles.input} type="text" value={newTask} onChange={event => setNewTask(event.target.value)}/>
+                <button onClick={addTask}>Add</button>
             </div>
             <div>
                 {
