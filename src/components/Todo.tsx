@@ -73,7 +73,7 @@ const Todo: React.FC = () => {
             <div>
                 {
                     todos.length === 0 ?
-                        <h1>Tasks is null</h1>
+                        <h1 className={styles.nullTodos}>Задач нет</h1>
                         :
                         todos.map(todo => (
                             <div key={todo.id} className={styles.todoItems}>
@@ -83,7 +83,7 @@ const Todo: React.FC = () => {
                                         type="checkbox"
                                         onChange={() => toggleTaskCompletion(todo.id)}
                                     />
-                                    <span className={styles.todoName}>{todo.name}</span>
+                                    <span className={todo.completed ? styles.completed : styles.todoName}>{todo.name}</span>
                                 </div>
                                 <button className={styles.deleteButton} onClick={() => deleteTask(todo.id)}>Delete</button>
                             </div>
