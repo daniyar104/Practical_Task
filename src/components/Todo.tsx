@@ -1,5 +1,5 @@
 "use client"
-import {useState, useEffect} from "react";
+import {useState, useEffect, ChangeEvent} from "react";
 import styles from "./todo.module.css"; // ✅ Правильно
 
 
@@ -53,11 +53,16 @@ const Todo: React.FC = () => {
             )
         )
     }
+
+    ///Delete task
+    const deleteTask = (id: number): void => {
+        setTodo(todos.filter((todo) => todo.id !== id))
+    }
     return(
         <div>
             <h1>Список задач</h1>
             <div>
-                <input className={styles.input} type="text" value={newTask} onChange={event => setNewTask(event.target.value)}/>
+                <input className={styles.input} type="text" value={newTask} onChange={(event: ChangeEvent<HTMLInputElement>) => setNewTask(event.target.value)}/>
                 <button onClick={addTask}>Add</button>
             </div>
             <div>
@@ -73,6 +78,7 @@ const Todo: React.FC = () => {
                                     onChange={() => toggleTaskCompletion(todo.id)}
                                 />
                                 <span>{todo.name}</span>
+                                <button onClick={() => deleteTask(todo.id)}>Delete</button>
                             </div>
                         ))
                 }
