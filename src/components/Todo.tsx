@@ -1,5 +1,5 @@
 "use client"
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import styles from "./todo.module.css"; // ✅ Правильно
 
 
@@ -13,9 +13,27 @@ const Todo: React.FC = () => {
     const [todos, setTodo] = useState<ITodo[]>([])
     const [newTask, setNewTask] = useState<string>("")
 
+    const [isMounted, setIsMounted] = useState<boolean>(false)
+
+    /// Initialize in localstorage
+    useEffect(() => {
+        setIsMounted(true)
+        const saveTodo = localStorage.getItem("todos")
+        if(saveTodo){
+            setTodo(JSON.parse(saveTodo))
+        }
+    }, [])
+
+    useEffect(() => {
+        if(isMounted){
+            localStorage.setItem("todos", JSON.stringify(todos))
+        }
+    }, [todos, isMounted]);
+
+
     //Add new task
-    const addTask = () => {
-        if (newTask.trim() === "") return
+    const addTask = (): void => {
+        if (!newTask.trim()) return
 
         const newTodo: ITodo = {
             id: Date.now(),
@@ -28,7 +46,7 @@ const Todo: React.FC = () => {
     }
 
     //Change completed status
-    const toggleTaskCompletion = (id: number) => {
+    const toggleTaskCompletion = (id: number): void => {
         setTodo(prev =>
             prev.map(todo =>
                 todo.id === id ? {...todo, completed: !todo.completed} : todo
