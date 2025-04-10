@@ -1,6 +1,6 @@
 "use client"
 import {useState, useEffect, ChangeEvent} from "react";
-import styles from "./todo.module.css"; // ✅ Правильно
+import styles from "./todo.module.css";
 
 
 interface ITodo {
@@ -59,11 +59,16 @@ const Todo: React.FC = () => {
         setTodo(todos.filter((todo) => todo.id !== id))
     }
     return(
-        <div>
+        <div className={styles.container}>
             <h1>Список задач</h1>
-            <div>
-                <input className={styles.input} type="text" value={newTask} onChange={(event: ChangeEvent<HTMLInputElement>) => setNewTask(event.target.value)}/>
-                <button onClick={addTask}>Add</button>
+            <div className={styles.todoSection}>
+                <input
+                    className={styles.input}
+                    type="text"
+                    value={newTask}
+                    placeholder="Введите название задачи..."
+                    onChange={(event: ChangeEvent<HTMLInputElement>) => setNewTask(event.target.value)}/>
+                <button className={styles.addButton} onClick={addTask}>Добавить</button>
             </div>
             <div>
                 {
@@ -71,14 +76,16 @@ const Todo: React.FC = () => {
                         <h1>Tasks is null</h1>
                         :
                         todos.map(todo => (
-                            <div key={todo.id}>
-                                <input
-                                    checked={todo.completed}
-                                    type="checkbox"
-                                    onChange={() => toggleTaskCompletion(todo.id)}
-                                />
-                                <span>{todo.name}</span>
-                                <button onClick={() => deleteTask(todo.id)}>Delete</button>
+                            <div key={todo.id} className={styles.todoItems}>
+                                <div>
+                                    <input
+                                        checked={todo.completed}
+                                        type="checkbox"
+                                        onChange={() => toggleTaskCompletion(todo.id)}
+                                    />
+                                    <span className={styles.todoName}>{todo.name}</span>
+                                </div>
+                                <button className={styles.deleteButton} onClick={() => deleteTask(todo.id)}>Delete</button>
                             </div>
                         ))
                 }

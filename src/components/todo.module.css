@@ -1,6 +1,49 @@
-.todo-section{
+.container{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.todoSection{
     display: flex;
+    margin-bottom: 10px;
 }
 .input{
+    width: 100%;
     border: 1px solid green;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.addButton{
+    background: forestgreen;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+.todoItems{
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    background: #c9c9c9;
+}
+
+.todoName{
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 10px;
+}
+.deleteButton{
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
 }
