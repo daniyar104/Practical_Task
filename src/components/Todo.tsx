@@ -27,6 +27,14 @@ const Todo: React.FC = () => {
         setNewTask("")
     }
 
+    //Change completed status
+    const toggleTaskCompletion = (id: number) => {
+        setTodo(prev =>
+            prev.map(todo =>
+                todo.id === id ? {...todo, completed: !todo.completed} : todo
+            )
+        )
+    }
     return(
         <div>
             <h1>Список задач</h1>
@@ -41,6 +49,11 @@ const Todo: React.FC = () => {
                         :
                         todos.map(todo => (
                             <div key={todo.id}>
+                                <input
+                                    checked={todo.completed}
+                                    type="checkbox"
+                                    onChange={() => toggleTaskCompletion(todo.id)}
+                                />
                                 <span>{todo.name}</span>
                             </div>
                         ))
