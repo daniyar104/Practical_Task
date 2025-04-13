@@ -1,6 +1,7 @@
 "use client"
 import {useState, useEffect, ChangeEvent} from "react";
 import styles from "./todo.module.css";
+import ThemeButton from "@/components/ThemeButton";
 
 
 interface ITodo {
@@ -60,7 +61,10 @@ const Todo: React.FC = () => {
     }
     return(
         <div className={styles.container}>
-            <h1>Список задач</h1>
+            <div className={styles.headerContainer}>
+                <h1 className={styles.title}>Список задач</h1>
+                <ThemeButton />
+            </div>
             <div className={styles.todoSection}>
                 <input
                     className={styles.input}

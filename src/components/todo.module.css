@@ -1,22 +1,32 @@
 .container{
     width: 50%;
     margin: 0 auto;
+    background: var(--bg-color);
 }
 
 .todoSection{
     display: flex;
     margin-bottom: 10px;
 }
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.title{
+    color: var(--text-color);
+}
 .input{
     width: 100%;
-    border: 1px solid green;
+    border: 1px solid var(--input-border);
     border-radius: 5px;
     margin-right: 10px;
 }
 
+
 .addButton{
-    background: forestgreen;
-    color: white;
+    background: var(--btn-bg);
+    color: var(--text-color);
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -32,7 +42,7 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-    background: #c9c9c9;
+    background: var(--task-border);
 }
 
 .todoName{
@@ -43,7 +53,7 @@
 .deleteButton{
     border: none;
     background-color: red;
-    color: white;
+    color: var(--text-color);
     border-radius: 5px;
     padding: 5px 10px;
 }
@@ -56,5 +66,5 @@
     font-size: 20px;
     margin: 0 10px;
     text-decoration: line-through;
-    color: #888;
+    color: gray;
 }
