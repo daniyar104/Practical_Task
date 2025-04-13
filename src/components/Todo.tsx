@@ -8,6 +8,7 @@ interface ITodo {
     id: number;
     name: string;
     completed: boolean;
+    created_at: string;
 }
 
 const Todo: React.FC = () => {
@@ -39,7 +40,8 @@ const Todo: React.FC = () => {
         const newTodo: ITodo = {
             id: Date.now(),
             name: newTask,
-            completed: false
+            completed: false,
+            created_at: new Date().toISOString(),
         }
 
         setTodo([...todos, newTodo])
@@ -81,13 +83,18 @@ const Todo: React.FC = () => {
                         :
                         todos.map(todo => (
                             <div key={todo.id} className={styles.todoItems}>
-                                <div>
+                                <div className={styles.todoComponent}>
                                     <input
                                         checked={todo.completed}
                                         type="checkbox"
                                         onChange={() => toggleTaskCompletion(todo.id)}
                                     />
-                                    <span className={todo.completed ? styles.completed : styles.todoName}>{todo.name}</span>
+                                    <div className={styles.content}>
+                                        <div className={todo.completed ? styles.completed : styles.todoName}>{todo.name}</div>
+                                        <div className={styles.date}>
+                                            {new Date(todo.created_at).toLocaleDateString()}
+                                        </div>
+                                    </div>
                                 </div>
                                 <button className={styles.deleteButton} onClick={() => deleteTask(todo.id)}>Delete</button>
                             </div>

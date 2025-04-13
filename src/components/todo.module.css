@@ -23,7 +23,9 @@
     margin-right: 10px;
 }
 
-
+.todoComponent{
+    display: flex;
+}
 .addButton{
     background: var(--btn-bg);
     color: var(--text-color);
@@ -49,6 +51,10 @@
     font-weight: bold;
     font-size: 20px;
     margin: 0 10px;
+}
+.date{
+    margin: 0 10px;
+    color: var(--data-text);
 }
 .deleteButton{
     border: none;
